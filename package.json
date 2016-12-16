@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/titopalomeke/vuejs-training#readme",
   "dependencies": {
+    "foundation-sites": "^6.3.0",
     "jquery": "^3.1.1",
     "prismjs": "^1.6.0",
     "vue": "^2.1.5"
