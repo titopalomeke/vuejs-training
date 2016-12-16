@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Formación Vue.js | Computed Properties</title>
+
+    <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="row">
+    <div class="medium-8 large-9 medium-push-4 large-push-3 columns">
+        <h1>Breve formación de Vuejs</h1>
+        <h2>Computed Properties</h2>
+
+        <hr>
+
+        <p>Vuejs permite introducir expresiones lógicas en las templates eso puede "manchar" el código y
+            complicar su mantenimiento. Las props computed permiten extraer esa lógica
+            facilitando la claridad del código en nuestras vistas</p>
+
+        <pre>
+                    <code class="language-html">
+    &lt;div id=&quot;parsel-name&quot;&gt;
+        &lt;p&gt;Nombre: &quot;{{ name }}&quot;&lt;/p&gt;
+        &lt;p&gt;Nombre en lengua parsel: &quot;{{ parselName }}&quot;&lt;/p&gt;
+    &lt;/div&gt;
+                    </code>
+                </pre>
+
+        <pre>
+                    <code class="language-js">
+    vm = new Vue({
+        el: &#39;#parsel-name&#39;,
+
+        data: {
+            name: &#39;Alberto&#39;
+        },
+
+        computed: {
+            parselName: function () {
+                return this.name.split(&#39;&#39;).reverse().join(&#39;&#39;);
+            }
+        }
+    });
+                    </code>
+                </pre>
+
+        <div id="parsel-name">
+            <p>Nombre: "{{ name }}"</p>
+            <p>Nombre en lengua parsel: "{{ parselName }}"</p>
+
+            <pre>
+                <code class="language-xml">{{ $data }}</code>
+            </pre>
+        </div>
+    </div>
+    <div class="medium-4 large-3 medium-pull-8 large-pull-9 columns" data-sticky-container>
+        <div class="sticky menu-wrap" data-sticky data-margin-top="0">
+            <img src="images/logo.png" class="logo">
+            <ul class="menu vertical">
+                <li><a href="ex1.html">Introducción</a></li>
+                <li><a href="ex2.html">Directivas de Control</a></li>
+                <li><a href="ex3.html">Métodos y Eventos</a></li>
+                <li><a href="ex4.html">Computed properties</a></li>
+                <li><a href="ex5.html">Binding de clases y estilos</a></li>
+                <li><a href="ex6.html">Componentes</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+<script src="node_modules/prismjs/prism.js"></script>
+
+<script type="text/javascript">
+
+    vm = new Vue({
+        el: '#parsel-name',
+
+        data: {
+            name: 'Alberto'
+        },
+
+        computed: {
+            parselName: function () {
+                return this.name.split('').reverse().join('');
+            }
+        }
+    });
+
+    $(document).foundation();
+
+</script>
+</html>

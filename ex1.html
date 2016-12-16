@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Formación Vue.js | Introducción</title>
+
+        <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.min.css">
+        <link rel="stylesheet" href="node_modules/prismjs/themes/prism.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="medium-8 large-9 medium-push-4 large-push-3 columns">
+                <h1>Breve formación de Vuejs</h1>
+                <h2>Introducción</h2>
+
+                <hr>
+
+                <h3>¿Qué es Vue.js?</h3>
+
+                <p>Es una librería js para construir interfaces web interactivas.<br />
+                No es un framework MVC, no tiene controlador, está especializado en la capa de vista y sigue un
+                patrón MVVM.</p>
+
+                <p></p>
+
+                <h3>Data Bindind Reactivo</h3>
+
+                <img src="images/mvvm.png" />
+
+                <p>Vue.js es el bloque central que sincroniza la Vista y el Modelo de manera reactiva, es decir, los cambios
+                en la vista afectan al modelo y viceversa.</p>
+
+                <p>¿Cómo hace esto? Mediante directivas insertadas directamente en los tags html.</p>
+
+                <pre>
+                    <code class="language-html">
+    &lt;input type=&quot;text&quot; id=&quot;nombre&quot; v-model=&quot;nombre&quot;/&gt;
+                    </code>
+                </pre>
+
+                <h3>¿Por qué Vue.js?</h3>
+
+                <ul>
+                    <li>No es difícil de aprender (aunque mi neurona haya muerto)</li>
+                    <li>Su sistema de Binding (Clases, estilos)</li>
+                    <li>Es fácil crear componentes</li>
+                    <li>Al utilizar un DOM virtual su rendimiento es muy bueno</li>
+                    <li>Es posible combinarlo con otras liberías js</li>
+                </ul>
+
+                <hr>
+
+                <h3>Ejemplo</h3>
+
+                <hr>
+
+                <pre>
+                    <code class="language-html">
+    &lt;div id=&quot;welcome-msg&quot;&gt;
+        &lt;h4&gt;Bienvenido, {{ name }}&lt;/h4&gt;
+
+        &lt;input type=&quot;text&quot; v-model=&quot;name&quot; class=&quot;form-control&quot;&gt;
+    &lt;/div&gt;
+                    </code>
+                </pre>
+
+                <h4>Creamos una instancia del objeto Vue</h4>
+
+                <pre>
+                    <code class="language-js">
+    new Vue({
+        el: &quot;#welcome-msg&quot;,
+        data: {
+            name: &quot;Harry&quot;
+        }
+    });
+                    </code>
+                </pre>
+
+                <div id="welcome-msg">
+                    <h4>Bienvenido, {{ name }}</h4>
+
+                    <input type="text" v-model="name" class="form-control" />
+
+                    <pre>
+                        <code class="language-xml">{{ $data }}</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="medium-4 large-3 medium-pull-8 large-pull-9 columns" data-sticky-container>
+                <div class="sticky menu-wrap" data-sticky data-margin-top="0">
+                    <img src="images/logo.png" class="logo">
+                    <ul class="menu vertical">
+                        <li><a href="ex1.html">Introducción</a></li>
+                        <li><a href="ex2.html">Directivas de Control</a></li>
+                        <li><a href="ex3.html">Métodos y Eventos</a></li>
+                        <li><a href="ex4.html">Computed properties</a></li>
+                        <li><a href="ex5.html">Binding de clases y estilos</a></li>
+                        <li><a href="ex6.html">Componentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+    <script src="node_modules/prismjs/prism.js"></script>
+    <script type="text/javascript">
+        vm = new Vue({
+                el: "#welcome-msg",
+                data: {
+                    name: "Harry"
+                }
+            });
+
+        $(document).foundation();
+    </script>
+</html>

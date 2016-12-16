@@ -1,0 +1,24 @@
+{
+  "name": "vuejs-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titopalomeke/vuejs-training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/titopalomeke/vuejs-training/issues"
+  },
+  "homepage": "https://github.com/titopalomeke/vuejs-training#readme",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "prismjs": "^1.6.0",
+    "vue": "^2.1.5"
+  }
+}

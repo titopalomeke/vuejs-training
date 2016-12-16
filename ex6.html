@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Formación Vue.js | Componentes</title>
+
+    <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="dumbledore-form" class="row">
+    <div class="medium-8 large-9 medium-push-4 large-push-3 columns">
+        <h1>Breve formación de Vuejs</h1>
+        <h2>Componentes</h2>
+
+        <hr>
+
+        <h4>Listado de Casas utilizando v-for y componente básico</h4>
+
+        <hr>
+
+        <pre>
+            <code class="language-html">
+&lt;ul v-for=&quot;house in houses&quot;&gt;
+    &lt;nombre-casa v-bind:name=&quot;house.name&quot;&gt;&lt;/nombre-casa&gt;
+&lt;/ul&gt;
+            </code>
+        </pre>
+
+        <pre>
+            <code class="language-js">
+Vue.component(&#39;nombre-casa&#39;, {
+    template: &#39;&lt;li&gt;{{ name }}&lt;/li&gt;&#39;,
+
+    props: [&#39;name&#39;]
+
+});
+
+new Vue({
+    el: &#39;#dumbledore-form&#39;,
+
+    data: {
+        houses: [
+            {name: &#39;Gryffindor&#39;, points: 0},
+            {name: &#39;Hufflepuff&#39;, points: 0},
+            {name: &#39;Ravenclaw&#39;, points: 0},
+            {name: &#39;Slytherin&#39;, points: 0}
+        ]
+    },
+});
+            </code>
+        </pre>
+
+        <ul v-for="house in houses">
+            <nombre-casa v-bind:name="house.name"></nombre-casa>
+        </ul>
+
+
+        <h4>Formulario de asignación de puntos para las casas. by Dumbledore</h4>
+
+        <hr>
+
+        <pre>
+            <code class="language-html">
+&lt;div v-for=&quot;(house,index) in houses&quot;&gt;
+    &lt;house-points v-bind:index=&quot;index&quot; v-bind:name=&quot;house.name&quot;
+    v-bind:points.sync=&quot;house.points&quot; v-on:add-points-house=&quot;addPointsHouse&quot;
+    v-on:sub-points-house=&quot;subPointsHouse&quot;&gt;&lt;/house-points&gt;
+&lt;/div&gt;
+            </code>
+        </pre>
+
+        <pre>
+            <code class="language-js">
+Vue.component(&#39;house-points&#39;, {
+    template: &#39;#house-form-points&#39;,
+
+    props: [&#39;name&#39;, &#39;points&#39;, &#39;index&#39;],
+
+    methods: {
+        addTrigger: function () {
+            this.$emit(&#39;add-points-house&#39;, this.index);
+        },
+
+        subTrigger: function () {
+            this.$emit(&#39;sub-points-house&#39;, this.index);
+
+        }
+    }
+});
+
+new Vue({
+    el: &#39;#dumbledore-form&#39;,
+
+    data: {
+        houses: [
+            {name: &#39;Gryffindor&#39;, points: 0},
+            {name: &#39;Hufflepuff&#39;, points: 0},
+            {name: &#39;Ravenclaw&#39;, points: 0},
+            {name: &#39;Slytherin&#39;, points: 0}
+        ]
+    },
+
+    methods: {
+        addPointsHouse : function (index) {
+            this.houses[index].points = this.houses[index].points + 10;
+        },
+
+        subPointsHouse : function (index) {
+            this.houses[index].points = this.houses[index].points - 10;
+        }
+    }
+
+});
+            </code>
+        </pre>
+
+        <div v-for="(house,index) in houses">
+            <house-points v-bind:index="index" v-bind:name="house.name" v-bind:points.sync="house.points" v-on:add-points-house="addPointsHouse" v-on:sub-points-house="subPointsHouse"></house-points>
+        </div>
+
+        <pre>
+            <code class="language-xml">{{ $data }}</code>
+        </pre>
+    </div>
+    <div class="medium-4 large-3 medium-pull-8 large-pull-9 columns" data-sticky-container>
+        <div class="sticky menu-wrap" data-sticky data-margin-top="0">
+            <img src="images/logo.png" class="logo">
+            <ul class="menu vertical">
+                <li><a href="ex1.html">Introducción</a></li>
+                <li><a href="ex2.html">Directivas de Control</a></li>
+                <li><a href="ex3.html">Métodos y Eventos</a></li>
+                <li><a href="ex4.html">Computed properties</a></li>
+                <li><a href="ex5.html">Binding de clases y estilos</a></li>
+                <li><a href="ex6.html">Componentes</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+<script src="node_modules/prismjs/prism.js"></script>
+
+<script type="text/template" id="house-form-points">
+    <div>
+        <p>Formulario asignación de puntos para la casa <strong>{{ name }}</strong> by Dumbledore:</p>
+
+        <button type="button" class="button" v-on:click="addTrigger">+</button>
+
+        <button type="button" v-bind:disabled="points == 0" class="button" v-on:click="subTrigger">-</button>
+
+        <p><strong>{{ points }}</strong> puntos para <strong>{{ name }}</strong>!!!!</p>
+    </div>
+</script>
+
+<script type="text/javascript">
+
+    Vue.component('nombre-casa', {
+        template: '<li>{{ name }}</li>',
+
+        props: ['name']
+
+    });
+
+    Vue.component('house-points', {
+        template: '#house-form-points',
+
+        props: ['name', 'points', 'index'],
+
+        methods: {
+            addTrigger: function () {
+                this.$emit('add-points-house', this.index);
+            },
+
+            subTrigger: function () {
+                this.$emit('sub-points-house', this.index);
+
+            }
+        }
+    });
+
+    new Vue({
+        el: '#dumbledore-form',
+
+        data: {
+            houses: [
+                {name: 'Gryffindor', points: 0},
+                {name: 'Hufflepuff', points: 0},
+                {name: 'Ravenclaw', points: 0},
+                {name: 'Slytherin', points: 0}
+            ]
+        },
+
+        methods: {
+            addPointsHouse : function (index) {
+                this.houses[index].points = this.houses[index].points + 10;
+            },
+
+            subPointsHouse : function (index) {
+                this.houses[index].points = this.houses[index].points - 10;
+            }
+        }
+
+    });
+
+    $(document).foundation();
+
+</script>
+</html>

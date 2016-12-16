@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Formación Vue.js | Directivas de control</title>
+
+        <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.min.css">
+        <link rel="stylesheet" href="node_modules/prismjs/themes/prism.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="medium-8 large-9 medium-push-4 large-push-3 columns">
+                <h1>Breve formación de Vuejs</h1>
+                <h2>Directivas de Control</h2>
+
+                <hr>
+
+                <pre>
+                        <code class="language-html">
+&lt;template v-if=&quot;name&quot;&gt;
+    &lt;h4&gt;Hola, {{ name }}&lt;/h4&gt;
+    &lt;p&gt;Bienvenido a Hogwarts&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;p v-else&gt;Por favor escribe tu nombre:&lt;/p&gt;
+
+&lt;h5 v-if=&quot;name&quot;&gt;V-if elimina el elemento del DOM&lt;/h5&gt;
+
+&lt;h5 v-show=&quot;name&quot;&gt;V-show no elimina el elemento del DOM, solo lo esconde con CSS&lt;/h5&gt;
+
+&lt;input type=&quot;text&quot; v-model=&quot;name&quot; class=&quot;form-control&quot;&gt;
+
+&lt;p v-if=&quot;name == &#39;&#39;&quot; class=&quot;alert callout&quot;&gt;
+    Este campo es obligatorio
+&lt;/p&gt;
+                        </code>
+                    </pre>
+
+                <pre>
+                        <code class="language-js">
+new Vue({
+    el: &quot;#welcome-msg&quot;,
+    data: {
+        name: &quot;&quot;
+    }
+});
+                        </code>
+                    </pre>
+
+                <div id="welcome-msg">
+                    <template v-if="name">
+                        <h4>Hola, {{ name }}</h4>
+                        <p>Bienvenido a Hogwarts</p>
+                    </template>
+
+                    <p v-else>Por favor escribe tu nombre:</p>
+
+                    <h5 v-if="name">V-if elimina el elemento del DOM</h5>
+
+                    <h5 v-show="name">V-show no elimina el elemento del DOM, solo lo esconde con CSS</h5>
+
+                    <input type="text" v-model="name" class="form-control">
+
+                    <p v-if="name == ''" class="alert callout">
+                        Este campo es obligatorio
+                    </p>
+
+                    <pre>
+                        <code class="language-xml">{{ $data }}</code>
+                    </pre>
+                </div>
+            </div>
+            <div class="medium-4 large-3 medium-pull-8 large-pull-9 columns" data-sticky-container>
+                <div class="sticky menu-wrap" data-sticky data-margin-top="0">
+                    <img src="images/logo.png" class="logo">
+                    <ul class="menu vertical">
+                        <li><a href="ex1.html">Introducción</a></li>
+                        <li><a href="ex2.html">Directivas de Control</a></li>
+                        <li><a href="ex3.html">Métodos y Eventos</a></li>
+                        <li><a href="ex4.html">Computed properties</a></li>
+                        <li><a href="ex5.html">Binding de clases y estilos</a></li>
+                        <li><a href="ex6.html">Componentes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+    <script src="node_modules/prismjs/prism.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: "#welcome-msg",
+            data: {
+                name: ""
+            }
+        });
+
+        $(document).foundation();
+    </script>
+</html>

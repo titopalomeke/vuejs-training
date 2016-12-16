@@ -1,0 +1,26 @@
+code {
+    display: block;
+    width: 100%;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+.menu-wrap { width: 100%; }
+
+.menu li {
+    padding: .7rem 0;
+}
+
+.menu li > a {
+    color: #7f8c8d;
+    display: inline;
+    padding: .2rem 0;
+    line-height: 2;
+}
+
+.menu li > a:hover { border-bottom: 2px solid #42b983; }
